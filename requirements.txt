@@ -1,0 +1,18 @@
+# Core pinned dependencies for the RIDE train-delay reliability pipeline.
+# Matches the versions installed in the project venv (Python 3.14).
+numpy==2.5.1
+pandas==3.0.5
+pyarrow==25.0.0
+scikit-learn==1.9.0
+xgboost==3.4.0
+MAPIE==1.5.0
+matplotlib==3.11.1
+datasets==5.0.1
+huggingface_hub==1.27.0
+PyYAML==6.0.3
+tqdm==4.70.0
+
+# Notebook execution
+ipykernel==7.3.0
+nbclient==0.11.0
+nbconvert==7.17.1
