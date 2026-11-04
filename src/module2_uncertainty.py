@@ -104,6 +104,15 @@ def main() -> None:
     X_train, y_train = train[feats], train["y_delta_sec"].to_numpy(dtype=np.float64)
     median_model = None
     for level in CONFIDENCE_LEVELS:
+
+        lo_model = fit_quantile_model(X_train, y_train, lo_q)
+        hi_model = fit_quantile_model(X_train, y_train, hi_q)
+        if median_model is None:
+            median_model = fit_quantile_model(X_train, y_train, 0.5)
+            median_model.save_model(MODELS_DIR / "xgb_cqr_median.json")
+        lo_model.save_model(MODELS_DIR / f"xgb_cqr_lo_{pct}.json")
+        hi_model.save_model(MODELS_DIR / f"xgb_cqr_hi_{pct}.json")
+
         pct = int(level * 100)
         lo_q, hi_q = (1 - level) / 2, (1 + level) / 2
         t0 = time.time()
